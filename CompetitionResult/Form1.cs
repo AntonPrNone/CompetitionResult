@@ -22,7 +22,7 @@ namespace CompetitionResult
 
         public string input;
         public string selectedNamePer;
-        public string maxTimePer;
+        public int maxTimePer;
 
         public string namePer;
         public string raceTimePer;
@@ -84,6 +84,95 @@ namespace CompetitionResult
 
                 input += namePer + ", " + DateRacePer + " " + TimeRacePer + ", " + raceTimePer + "\n";
             }
+        }
+
+        private void SaveAndCloseButton_Click(object sender, EventArgs e) // При нажатии на кнопку Save And Close
+        {
+            var rs = new StreamWriter(openFileDialog1.FileName, false);
+            rs.WriteLine(input);
+            rs.Close();
+        }
+
+        private void SaveReportButton_Click(object sender, EventArgs e) // При нажатии на кнопку Save Report
+        {
+            string otchet = "";
+            selectedNamePer = selectedName.Text;
+            maxTimePer = Int32.Parse(maxTime.Text);
+
+            var sr = new StreamReader(openFileDialog1.FileName);
+            int lenfile = sr.ReadToEnd().Split('\n').Length;
+            sr = new StreamReader(openFileDialog1.FileName);
+
+            ArrayList names = new ArrayList();
+            ArrayList dates = new ArrayList();
+            ArrayList raceTimes = new ArrayList();
+
+            for (int i = 0; i < lenfile; i++)
+            {
+                string inputline = sr.ReadLine();
+                if (inputline != "\n" && inputline != "" && inputline != null)
+                {
+                    names.Add(inputline.Split(',')[0].Trim());
+                    dates.Add(DateTime.Parse(inputline.Split(',')[1].Trim()));
+                    raceTimes.Add(Int32.Parse(inputline.Split(',')[2].Trim()));
+                }
+            }
+
+            lenfile = names.Count;
+
+            for (int i = 0; i < lenfile; i++)  // Фильтрация забегов
+            {
+                if (!(selectedNamePer == (string)names[i] && maxTimePer >= (int)raceTimes[i])) 
+                {
+                    names[i] = "";
+                    dates[i] = "";
+                    raceTimes[i] = "";
+                }
+            }
+
+            for (int i = 0; i < lenfile; i++)
+            {
+                names.Remove("");
+                dates.Remove("");
+                raceTimes.Remove("");
+            }
+
+            string temp1;
+            DateTime temp2;
+            int temp3;
+            for (int i = 0; i < names.Count - 1; i++) // Сортировка забегов по дате
+            {
+                for (int j = i + 1; j < names.Count; j++)
+                {
+                    if ((DateTime)dates[i] > (DateTime)dates[j])
+                    {
+                        temp1 = (string)names[i];
+                        names[i] = names[j];
+                        names[j] = temp1;
+
+                        temp2 = (DateTime)dates[i];
+                        dates[i] = dates[j];
+                        dates[j] = temp2;
+
+                        temp3 = (int)raceTimes[i];
+                        raceTimes[i] = raceTimes[j];
+                        raceTimes[j] = temp3;
+                    }
+                }
+            }
+
+            names.Reverse();
+            dates.Reverse();
+            raceTimes.Reverse();
+
+            for (int i = 0; i < names.Count; i++)   
+            {
+                otchet += names[i] + ", " + dates[i] + ", " + raceTimes[i] + '\n';
+            }
+
+            otchet = otchet.TrimEnd('\n');
+
+            System.IO.File.WriteAllText("C:\\Users\\201904\\Documents\\Report.txt", otchet);
         }
     }
 }

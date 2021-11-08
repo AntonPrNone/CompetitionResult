@@ -63,6 +63,7 @@
             this.SaveAndCloseButton.Text = "Save and Close";
             this.SaveAndCloseButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SaveAndCloseButton.UseVisualStyleBackColor = false;
+            this.SaveAndCloseButton.Click += new System.EventHandler(this.SaveAndCloseButton_Click);
             // 
             // label4
             // 
@@ -156,6 +157,7 @@
             this.SaveReportButton.TabIndex = 39;
             this.SaveReportButton.Text = "Save Report";
             this.SaveReportButton.UseVisualStyleBackColor = true;
+            this.SaveReportButton.Click += new System.EventHandler(this.SaveReportButton_Click);
             // 
             // OpenFileButton
             // 

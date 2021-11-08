@@ -29,58 +29,40 @@
         private void InitializeComponent()
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.NumberInc = new System.Windows.Forms.MaskedTextBox();
             this.SaveAndCloseButton = new System.Windows.Forms.Button();
-            this.DateEndPeriod = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.DateStartPeriod = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.PutButton = new System.Windows.Forms.Button();
-            this.DurationCall = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.Text_IncomingCall = new System.Windows.Forms.Label();
-            this.TimeConnection = new System.Windows.Forms.MaskedTextBox();
-            this.DateConnection = new System.Windows.Forms.DateTimePicker();
+            this.TimeRace = new System.Windows.Forms.MaskedTextBox();
+            this.DateRace = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.NumberOut = new System.Windows.Forms.MaskedTextBox();
+            this.name = new System.Windows.Forms.MaskedTextBox();
             this.Text_OutgoingCall = new System.Windows.Forms.Label();
             this.SaveReportButton = new System.Windows.Forms.Button();
             this.OpenFileButton = new System.Windows.Forms.Button();
             this.Heading = new System.Windows.Forms.Label();
+            this.raceTime = new System.Windows.Forms.MaskedTextBox();
+            this.maxTime = new System.Windows.Forms.MaskedTextBox();
+            this.selectedName = new System.Windows.Forms.MaskedTextBox();
+            this.PutButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // NumberInc
-            // 
-            this.NumberInc.Location = new System.Drawing.Point(668, 168);
-            this.NumberInc.Mask = "+7(999) 000-000";
-            this.NumberInc.Name = "NumberInc";
-            this.NumberInc.Size = new System.Drawing.Size(100, 20);
-            this.NumberInc.TabIndex = 54;
-            // 
             // SaveAndCloseButton
             // 
             this.SaveAndCloseButton.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.SaveAndCloseButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveAndCloseButton.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SaveAndCloseButton.Location = new System.Drawing.Point(356, 424);
+            this.SaveAndCloseButton.Location = new System.Drawing.Point(338, 427);
             this.SaveAndCloseButton.Name = "SaveAndCloseButton";
             this.SaveAndCloseButton.Size = new System.Drawing.Size(108, 27);
             this.SaveAndCloseButton.TabIndex = 53;
             this.SaveAndCloseButton.Text = "Save and Close";
             this.SaveAndCloseButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SaveAndCloseButton.UseVisualStyleBackColor = false;
-            this.SaveAndCloseButton.Click += new System.EventHandler(this.SaveAndCloseButton_Click);
-            // 
-            // DateEndPeriod
-            // 
-            this.DateEndPeriod.Location = new System.Drawing.Point(638, 381);
-            this.DateEndPeriod.Name = "DateEndPeriod";
-            this.DateEndPeriod.Size = new System.Drawing.Size(140, 20);
-            this.DateEndPeriod.TabIndex = 52;
             // 
             // label4
             // 
@@ -88,18 +70,11 @@
             this.label4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label4.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(468, 381);
+            this.label4.Location = new System.Drawing.Point(510, 376);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 18);
+            this.label4.Size = new System.Drawing.Size(187, 18);
             this.label4.TabIndex = 51;
-            this.label4.Text = "Period end date:";
-            // 
-            // DateStartPeriod
-            // 
-            this.DateStartPeriod.Location = new System.Drawing.Point(237, 379);
-            this.DateStartPeriod.Name = "DateStartPeriod";
-            this.DateStartPeriod.Size = new System.Drawing.Size(140, 20);
-            this.DateStartPeriod.TabIndex = 50;
+            this.label4.Text = "Maximum allowed time:";
             // 
             // label3
             // 
@@ -109,38 +84,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
             this.label3.Location = new System.Drawing.Point(19, 381);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(190, 18);
+            this.label3.Size = new System.Drawing.Size(127, 18);
             this.label3.TabIndex = 49;
-            this.label3.Text = "Start date of the period:";
-            // 
-            // PutButton
-            // 
-            this.PutButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PutButton.Location = new System.Drawing.Point(356, 229);
-            this.PutButton.Name = "PutButton";
-            this.PutButton.Size = new System.Drawing.Size(75, 23);
-            this.PutButton.TabIndex = 48;
-            this.PutButton.Text = "Put";
-            this.PutButton.UseVisualStyleBackColor = true;
-            this.PutButton.Click += new System.EventHandler(this.PutButton_Click);
-            // 
-            // DurationCall
-            // 
-            this.DurationCall.Location = new System.Drawing.Point(362, 196);
-            this.DurationCall.Name = "DurationCall";
-            this.DurationCall.Size = new System.Drawing.Size(60, 20);
-            this.DurationCall.TabIndex = 47;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(318, 170);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 18);
-            this.label2.TabIndex = 46;
-            this.label2.Text = "Connection duration";
+            this.label3.Text = "Selected Name:";
             // 
             // Text_IncomingCall
             // 
@@ -148,47 +94,46 @@
             this.Text_IncomingCall.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Text_IncomingCall.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Text_IncomingCall.ForeColor = System.Drawing.SystemColors.Control;
-            this.Text_IncomingCall.Location = new System.Drawing.Point(665, 129);
+            this.Text_IncomingCall.Location = new System.Drawing.Point(684, 130);
             this.Text_IncomingCall.Name = "Text_IncomingCall";
             this.Text_IncomingCall.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Text_IncomingCall.Size = new System.Drawing.Size(104, 18);
+            this.Text_IncomingCall.Size = new System.Drawing.Size(85, 18);
             this.Text_IncomingCall.TabIndex = 45;
-            this.Text_IncomingCall.Text = "Incoming call";
+            this.Text_IncomingCall.Text = "Race Time";
             // 
-            // TimeConnection
+            // TimeRace
             // 
-            this.TimeConnection.Location = new System.Drawing.Point(471, 131);
-            this.TimeConnection.Mask = "00:00:00";
-            this.TimeConnection.Name = "TimeConnection";
-            this.TimeConnection.Size = new System.Drawing.Size(48, 20);
-            this.TimeConnection.TabIndex = 44;
-            this.TimeConnection.ValidatingType = typeof(System.DateTime);
+            this.TimeRace.Location = new System.Drawing.Point(469, 125);
+            this.TimeRace.Mask = "00:00:00";
+            this.TimeRace.Name = "TimeRace";
+            this.TimeRace.Size = new System.Drawing.Size(48, 20);
+            this.TimeRace.TabIndex = 44;
+            this.TimeRace.ValidatingType = typeof(System.DateTime);
             // 
-            // DateConnection
+            // DateRace
             // 
-            this.DateConnection.Location = new System.Drawing.Point(293, 130);
-            this.DateConnection.Name = "DateConnection";
-            this.DateConnection.Size = new System.Drawing.Size(140, 20);
-            this.DateConnection.TabIndex = 43;
+            this.DateRace.Location = new System.Drawing.Point(288, 125);
+            this.DateRace.Name = "DateRace";
+            this.DateRace.Size = new System.Drawing.Size(140, 20);
+            this.DateRace.TabIndex = 43;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(290, 89);
+            this.label1.Location = new System.Drawing.Point(337, 86);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 18);
+            this.label1.Size = new System.Drawing.Size(120, 18);
             this.label1.TabIndex = 42;
-            this.label1.Text = "Date/time of connection start";
+            this.label1.Text = "Date/time race";
             // 
-            // NumberOut
+            // name
             // 
-            this.NumberOut.Location = new System.Drawing.Point(31, 168);
-            this.NumberOut.Mask = "+7(999) 000-000";
-            this.NumberOut.Name = "NumberOut";
-            this.NumberOut.Size = new System.Drawing.Size(100, 20);
-            this.NumberOut.TabIndex = 41;
+            this.name.Location = new System.Drawing.Point(22, 168);
+            this.name.Name = "name";
+            this.name.Size = new System.Drawing.Size(188, 20);
+            this.name.TabIndex = 41;
             // 
             // Text_OutgoingCall
             // 
@@ -196,11 +141,11 @@
             this.Text_OutgoingCall.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Text_OutgoingCall.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Text_OutgoingCall.ForeColor = System.Drawing.SystemColors.Control;
-            this.Text_OutgoingCall.Location = new System.Drawing.Point(28, 130);
+            this.Text_OutgoingCall.Location = new System.Drawing.Point(19, 127);
             this.Text_OutgoingCall.Name = "Text_OutgoingCall";
-            this.Text_OutgoingCall.Size = new System.Drawing.Size(103, 18);
+            this.Text_OutgoingCall.Size = new System.Drawing.Size(119, 18);
             this.Text_OutgoingCall.TabIndex = 40;
-            this.Text_OutgoingCall.Text = "Outgoing call";
+            this.Text_OutgoingCall.Text = "Athlete\'s name";
             // 
             // SaveReportButton
             // 
@@ -211,7 +156,6 @@
             this.SaveReportButton.TabIndex = 39;
             this.SaveReportButton.Text = "Save Report";
             this.SaveReportButton.UseVisualStyleBackColor = true;
-            this.SaveReportButton.Click += new System.EventHandler(this.SaveReportButton_Click);
             // 
             // OpenFileButton
             // 
@@ -234,29 +178,64 @@
             this.Heading.Name = "Heading";
             this.Heading.Size = new System.Drawing.Size(800, 35);
             this.Heading.TabIndex = 37;
-            this.Heading.Text = "Spammer Detection";
+            this.Heading.Text = "Competition Result";
             this.Heading.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // raceTime
+            // 
+            this.raceTime.Location = new System.Drawing.Point(710, 168);
+            this.raceTime.Mask = "00000";
+            this.raceTime.Name = "raceTime";
+            this.raceTime.Size = new System.Drawing.Size(38, 20);
+            this.raceTime.TabIndex = 54;
+            this.raceTime.ValidatingType = typeof(int);
+            // 
+            // maxTime
+            // 
+            this.maxTime.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            this.maxTime.Location = new System.Drawing.Point(740, 376);
+            this.maxTime.Mask = "00000";
+            this.maxTime.Name = "maxTime";
+            this.maxTime.Size = new System.Drawing.Size(38, 20);
+            this.maxTime.TabIndex = 56;
+            this.maxTime.ValidatingType = typeof(int);
+            // 
+            // selectedName
+            // 
+            this.selectedName.Location = new System.Drawing.Point(176, 379);
+            this.selectedName.Name = "selectedName";
+            this.selectedName.Size = new System.Drawing.Size(188, 20);
+            this.selectedName.TabIndex = 57;
+            // 
+            // PutButton
+            // 
+            this.PutButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PutButton.Location = new System.Drawing.Point(356, 217);
+            this.PutButton.Name = "PutButton";
+            this.PutButton.Size = new System.Drawing.Size(75, 23);
+            this.PutButton.TabIndex = 58;
+            this.PutButton.Text = "Put";
+            this.PutButton.UseVisualStyleBackColor = true;
+            this.PutButton.Click += new System.EventHandler(this.PutButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(800, 469);
-            this.Controls.Add(this.NumberInc);
-            this.Controls.Add(this.SaveAndCloseButton);
-            this.Controls.Add(this.DateEndPeriod);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.DateStartPeriod);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(800, 473);
             this.Controls.Add(this.PutButton);
-            this.Controls.Add(this.DurationCall);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.selectedName);
+            this.Controls.Add(this.maxTime);
+            this.Controls.Add(this.raceTime);
+            this.Controls.Add(this.SaveAndCloseButton);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.Text_IncomingCall);
-            this.Controls.Add(this.TimeConnection);
-            this.Controls.Add(this.DateConnection);
+            this.Controls.Add(this.TimeRace);
+            this.Controls.Add(this.DateRace);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.NumberOut);
+            this.Controls.Add(this.name);
             this.Controls.Add(this.Text_OutgoingCall);
             this.Controls.Add(this.SaveReportButton);
             this.Controls.Add(this.OpenFileButton);
@@ -271,24 +250,22 @@
         #endregion
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.MaskedTextBox NumberInc;
         private System.Windows.Forms.Button SaveAndCloseButton;
-        private System.Windows.Forms.DateTimePicker DateEndPeriod;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker DateStartPeriod;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button PutButton;
-        private System.Windows.Forms.TextBox DurationCall;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Text_IncomingCall;
-        private System.Windows.Forms.MaskedTextBox TimeConnection;
-        private System.Windows.Forms.DateTimePicker DateConnection;
+        private System.Windows.Forms.MaskedTextBox TimeRace;
+        private System.Windows.Forms.DateTimePicker DateRace;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox NumberOut;
+        private System.Windows.Forms.MaskedTextBox name;
         private System.Windows.Forms.Label Text_OutgoingCall;
         private System.Windows.Forms.Button SaveReportButton;
         private System.Windows.Forms.Button OpenFileButton;
         private System.Windows.Forms.Label Heading;
+        private System.Windows.Forms.MaskedTextBox raceTime;
+        private System.Windows.Forms.MaskedTextBox maxTime;
+        private System.Windows.Forms.MaskedTextBox selectedName;
+        private System.Windows.Forms.Button PutButton;
     }
 }
 

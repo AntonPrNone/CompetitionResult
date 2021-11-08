@@ -21,14 +21,13 @@ namespace CompetitionResult
         }
 
         public string input;
-        public string StartTime;
-        public string EndTime;
+        public string selectedNamePer;
+        public string maxTimePer;
 
-        public string NumberOutPer;
-        public string NumberIncPer;
-        public string DateConnectionPer;
-        public string TimeConnectionPer;
-        public string DurationCallPer;
+        public string namePer;
+        public string raceTimePer;
+        public string DateRacePer;
+        public string TimeRacePer;
 
         private void OpenFileButton_Click(object sender, EventArgs e) // При нажатии на кнопку Open File
         {
@@ -51,178 +50,40 @@ namespace CompetitionResult
             input.TrimStart('\n');
         }
 
-        private void PutButton_Click(object sender, EventArgs e) // При нажатии на кнопку Put
+        private void PutButton_Click(object sender, EventArgs e)  // При нажатии на кнопку Put
         {
-            NumberOutPer = NumberOut.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
-            NumberIncPer = NumberInc.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
-            DateConnectionPer = Convert.ToString(DateConnection.Value.ToShortDateString());
-            TimeConnectionPer = Convert.ToString(TimeConnection.Text);
-            DurationCallPer = DurationCall.Text;
+            namePer = name.Text;
+            raceTimePer = raceTime.Text;
+            DateRacePer = Convert.ToString(DateRace.Value.ToShortDateString());
+            TimeRacePer = Convert.ToString(TimeRace.Text);
 
             // Обработка исключений при неверном формате ввода
 
-            if (NumberOutPer.Length != 11)
+            if (namePer.Length == 0)
             {
                 Heading.ForeColor = Color.Red;
-                Heading.Text = @"Invalid field input format ""Outgoing call"" ";
+                Heading.Text = @"Invalid field input format ""Athlete's name"" ";
             }
 
-            else if (NumberIncPer.Length != 11)
+            else if (raceTimePer.Length == 0)
             {
                 Heading.ForeColor = Color.Red;
-                Heading.Text = @"Invalid field input format ""Incoming call"" ";
+                Heading.Text = @"Invalid field input format ""Race Time"" ";
             }
 
-            else if (TimeConnectionPer.Length != 8)
+            else if (TimeRacePer.Length != 8)
             {
                 Heading.ForeColor = Color.Red;
-                Heading.Text = @"Invalid field input format ""Time of connection start"" ";
+                Heading.Text = @"Invalid field input format ""Time race"" ";
             }
-
-            else
+            
+            else // Если формат ввода верный
             {
-                int x = 1;
-                try
-                {
-                    Convert.ToInt32(DurationCallPer);
-                }
+                Heading.ForeColor = Color.Green;
+                Heading.Text = "Spammer Detection";
 
-                catch
-                {
-                    x = 0;
-                    Heading.ForeColor = Color.Red;
-                    Heading.Text = @"Invalid field input format ""Connection duration"" ";
-                }
-
-                finally
-                {
-                    if (x == 1) // Если формат ввода верный
-                    {
-                        Heading.ForeColor = Color.Green;
-                        Heading.Text = "Spammer Detection";
-
-                        input += NumberOutPer + ", " + NumberIncPer + ", " + DateConnectionPer + " " + TimeConnectionPer + ", " + DurationCallPer + "\n";
-                    }
-                }
+                input += namePer + ", " + DateRacePer + " " + TimeRacePer + ", " + raceTimePer + "\n";
             }
-        }
-
-        private void SaveAndCloseButton_Click(object sender, EventArgs e) // При нажатии на кнопку Save And Close
-        {
-            input = input.TrimEnd('\n');
-            var rs = new StreamWriter(openFileDialog1.FileName, false);
-            rs.WriteLine(input);
-            rs.Close();
-        }
-
-        private void SaveReportButton_Click(object sender, EventArgs e) // Запись в otchet подходящие критерию исходящие номера, их количество и суммарное время звонков
-        {
-            StartTime = Convert.ToString(DateStartPeriod.Value);
-            EndTime = Convert.ToString(DateEndPeriod.Value);
-
-            var sr = new StreamReader(openFileDialog1.FileName);
-            int lenfile = sr.ReadToEnd().Split('\n').Length;
-            sr = new StreamReader(openFileDialog1.FileName);
-
-
-            ArrayList ishod = new ArrayList();
-            ArrayList vhod = new ArrayList();
-            ArrayList time = new ArrayList();
-            ArrayList len = new ArrayList();
-
-            for (int i = 0; i < lenfile; i++)
-            {
-                string inputline = sr.ReadLine();
-                if (inputline != "\n" && inputline != "" && inputline != null)
-                {
-                    ishod.Add(inputline.Split(',')[0].Trim());
-                    vhod.Add(inputline.Split(',')[1].Trim());
-                    time.Add(DateTime.Parse(inputline.Split(',')[2].Trim()));
-                    len.Add(Int32.Parse(inputline.Split(',')[3].Trim()));
-                }
-            }
-
-            ArrayList ishodDouble = new ArrayList();
-            foreach (string i in ishod)
-            {
-                ishodDouble.Add(i);
-            }
-
-            for (int i = 0; i < time.Count; i++) // Фильтр исходящих по временному промежутку
-            {
-                if (!(DateTime.Parse(StartTime.Substring(0, 10)) <= (DateTime)time[i] && DateTime.Parse(EndTime.Substring(0, 10)) >= (DateTime)time[i]))
-                {
-                    ishodDouble[i] = "";
-                }
-            }
-
-            for (int i = 0; i < ishod.Count; i++)
-            {
-                ishodDouble.Remove("");
-            }
-
-            Dictionary<string, int> countOfItems = new Dictionary<string, int>(); // Количество исходящих вызовов каждого номера в заданный временной промежуток
-            foreach (string eachNumber in ishodDouble)
-            {
-                if (countOfItems.ContainsKey(eachNumber))
-                    countOfItems[eachNumber]++;
-                else
-                    countOfItems[eachNumber] = 1;
-            }
-
-            Dictionary<string, int> countOfItems0 = new Dictionary<string, int>(); // Сортировка словаря по количеству исходящих вызовов каждого номера в заданный временной промежуток
-
-            foreach (var i in countOfItems.OrderByDescending(u => u.Value))
-            {
-                countOfItems0[i.Key] = i.Value;
-            }
-
-            ArrayList filteredNumber = new ArrayList(); // До десяти исходящих номеров, с которых было совершенно наибольшее количество звонков в заданный пользователем период
-            foreach (var i in countOfItems0.Keys)
-            {
-                if (filteredNumber.Count != 10)
-                {
-                    filteredNumber.Add(i);
-                }
-
-                else
-                {
-                    break;
-                }
-            }
-
-            string otchet = "";
-            int kl = 0;
-            int summ = 0;
-            int h = 0;
-            int m = 0;
-            int s = 0;
-
-            foreach (var i in filteredNumber) // Запись в otchet подходящие критерию исходящие номера, их количество и суммарное время звонков
-            {
-
-                for (int j = 0; j < ishod.Count; j++)
-                {
-                    if ((string)ishod[j] == (string)i)
-                    {
-                        kl++;
-                        summ += (int)len[j];
-                    }
-                }
-
-                h = summ / 3600;
-                m = (summ - (h * 3600)) / 60;
-                s = summ % 60;
-
-                otchet += i + ", " + kl + ", " + h + ":" + m + ":" + s + "\n";
-
-                kl = 0;
-                summ = 0;
-            }
-
-            otchet = otchet.TrimEnd('\n');
-
-            System.IO.File.WriteAllText("C:\\Users\\201904\\Documents\\Report.txt", otchet);
         }
     }
 }
